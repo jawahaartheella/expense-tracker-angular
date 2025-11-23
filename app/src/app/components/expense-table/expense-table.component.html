@@ -1,0 +1,37 @@
+<div class="table-container border rounded-3 overflow-hidden">
+    <table class="table mb-0" [ngClass]="{'table-fixed-layout': isTableFixedLayout}">
+        <thead>
+            <tr class="table-light">
+                <th scope="col" class="title-cell">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+                <th scope="col" class="notes-cell">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(expense of expenseData; track expense.id) {
+                <tr>
+                    <td class="title-cell">{{expense.title}}</td>
+                    <td>{{expense.date}}</td>
+                    <td>{{expense.category}}</td>
+                    <td>$ {{expense.amount}}</td>
+                    <td class="notes-cell d-flex align-items-center justify-content-between">
+                        <span>{{expense.notes}}</span>
+                        @if(showNotesOptions) {
+                            <div>
+                                <i class="bi bi-pencil me-3"></i>
+                                
+                                @if(expense.isBookmarked) {
+                                    <span class="bi bi-bookmark"></span>
+                                } @else {
+                                    <span class="bi bi-bookmark-fill"></span>
+                                }
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+<div class="container my-4">
+    <h2>Expenses</h2>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-end justify-content-evenly gap-4">
+                <div>
+                    <h6>Date Range</h6>
+                    <select class="form-select cursor-pointer" aria-label="Date Range Selection" style="width: 230px;">
+                        <option selected>Select date range</option>
+                        <option value="1">Last 6 Months</option>
+                        <option value="2">Last 3 Months</option>
+                        <option value="3">Last Month</option>
+                        <option value="4">Last 10 Days</option>
+                        <option value="5">Last Week</option>
+                    </select>
+                </div>
+                <div>
+                    <h6>Category</h6>
+                    <select class="form-select cursor-pointer" aria-label="Category Selection" style="width: 280px;">
+                        <option selected>All Categories</option>
+                        <option value="1">Groceries</option>
+                        <option value="2">Utilities</option>
+                        <option value="3">Entertainment</option>
+                        <option value="4">Transportation</option>
+                    </select>
+                </div>
+                <div>
+                    <h6>Amount</h6>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="text" class="form-control mb-0" placeholder="Min">
+                        <input type="text" class="form-control mb-0" placeholder="Max">
+                    </div>
+                </div>
+                <div>
+                    <select class="form-select cursor-pointer">
+                        <option selected>Sort by</option>
+                        <option value="1">Title</option>
+                        <option value="2">Date</option>
+                        <option value="3">Category</option>
+                        <option value="4">Amount</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
