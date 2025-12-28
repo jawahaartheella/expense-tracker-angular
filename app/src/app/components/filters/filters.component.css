@@ -1,3 +1,11 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.date-range-filter {
+    width: 230px;
+}
+
+.category-filter {
+    width: 280px;
+}
