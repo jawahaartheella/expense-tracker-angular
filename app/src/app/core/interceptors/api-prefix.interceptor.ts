@@ -11,7 +11,5 @@ export const apiPrefixInterceptor: HttpInterceptorFn = (req, next) => {
     url: `${environment.apiBaseUrl}${req.url}`
   });
 
-  console.log('Interceptor hit:', req.url);
-
   return next(apiReq);
 };
