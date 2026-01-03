@@ -1,8 +1,18 @@
 <div class="container my-4 d-flex justify-content-between align-items-center">
     <h2>Expenses</h2>
-    <button class="btn btn-primary" type="button">Add Expense</button>
+    <button class="btn btn-primary" type="button" (click)="openExpenseCanvas(false)">Add Expense</button>
 </div>
 <div>
     <app-filters></app-filters>
-    <app-expense-table [expenseData]="expenseData" [showNotesOptions]="true" [isTableFixedLayout]="false"></app-expense-table>
+    <app-expense-table [expenseData]="expensesList" 
+                    [showNotesOptions]="true" 
+                    [isTableFixedLayout]="false" 
+                    [categories]="categoriesList"
+                    (emitExpense)="updateExpenseList($event)"
+                    (openEditCanvas)="openExpenseCanvas(true, $event)"
+                    (deleteExpense)="deleteSelectedExpense($event)"
+                    (bookmarkExpense)="bookmarkSelectedExpense($event)">
+    </app-expense-table>
 </div>
+
+<app-save-expense #saveExpenseCanvas (updateExpense)="updateExpenseList($event)"></app-save-expense>
