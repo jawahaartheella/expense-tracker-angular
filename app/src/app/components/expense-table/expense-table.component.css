@@ -14,3 +14,15 @@
 .table-fixed-layout {
     table-layout: fixed;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bi-trash:hover {
+    color: red;
+}
+
+.bi-pencil:hover {
+    color: blue
+}
