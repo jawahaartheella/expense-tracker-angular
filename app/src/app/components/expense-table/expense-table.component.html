@@ -6,7 +6,7 @@
                 <th scope="col">Date</th>
                 <th scope="col">Category</th>
                 <th scope="col">Amount</th>
-                <th scope="col" class="notes-cell">Notes</th>
+                <th scope="col" class="notes-cell" [ngClass]="{'col-5': !showNotesOptions}">Notes</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@
                     <td>{{getCatgeoryName(expense.category)}}</td>
                     <td>₹ {{expense.amount}}</td>
                     <td class="notes-cell d-flex align-items-center justify-content-between">
-                        <span>{{expense.notes?.length ? expense.notes : 'NA'}}</span>
+                        <span class="">{{expense.notes?.length ? expense.notes : 'NA'}}</span>
                         @if(showNotesOptions) {
                             <div>
                                 <i class="bi bi-pencil me-3 cursor-pointer" (click)="openEditExpeseCanvas(expense)"></i>

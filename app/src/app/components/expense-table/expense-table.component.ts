@@ -10,7 +10,7 @@ import { Category } from '../../core/models/category.model';
   templateUrl: './expense-table.component.html',
   styleUrl: './expense-table.component.css'
 })
-export class ExpenseTableComponent implements OnInit, OnChanges{
+export class ExpenseTableComponent implements OnChanges{
   @Input() expenseData: Array<Expense> = [];
   @Input() categories?: Array<Category>;
   @Input() showNotesOptions: boolean = false;
@@ -28,14 +28,8 @@ export class ExpenseTableComponent implements OnInit, OnChanges{
   endCount!: number;
   totalCount!:number;
 
-  ngOnInit() {
-    this.paginatedExpenses = this.expenseData;
-    if(this.enablePagination) {
-      this.initPagination();
-    }
-  }
-
   ngOnChanges() {
+    this.paginatedExpenses = this.expenseData;
     if(this.enablePagination) {
       this.initPagination();
     }

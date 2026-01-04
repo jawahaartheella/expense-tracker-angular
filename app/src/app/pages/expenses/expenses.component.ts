@@ -45,7 +45,7 @@ export class ExpensesComponent {
   getExpenses() {
     this.expenseService.getAllExpenses().subscribe({
       next: (res) => {
-        this.expensesList = res;
+        this.expensesList = res.slice().reverse();
         this.filteredExpensesList = this.expensesList;
       }
     }); 
