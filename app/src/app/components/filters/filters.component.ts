@@ -86,7 +86,8 @@ export class FiltersComponent {
   }
 
   private emitFilters() {
-    this.filters.category = this.filtersForm.get('category')?.value;
+    const intCategoryValue = parseInt(this.filtersForm.get('category')?.value)
+    this.filters.category =  intCategoryValue ? intCategoryValue : undefined;
     this.filters.minAmount = this.filtersForm.get('minAmount')?.value;
     this.filters.maxAmount = this.filtersForm.get('maxAmount')?.value;
     this.filters.sortBy = this.filtersForm.get('sortBy')?.value;

@@ -24,7 +24,7 @@
         <button class="btn btn-primary mt-auto" 
               (click)="isEditMode ? editCategory() : addCategory()" 
               [disabled]="isRequestInProgress">
-                {{isEditMode ? 'Save Changes' : 'Save Category'}}
+                {{isRequestInProgress ? 'Saving...' : (isEditMode ? 'Save Changes' : 'Save Category')}}
         </button>
     </form>
   </div>
