@@ -87,7 +87,6 @@ export class SaveExpenseComponent {
     (this.isEditMode ? this.expenseService.editExpense(this.expenseId, expenseValue) : this.expenseService.addExpense(expenseValue)).subscribe({
       next: (res) => {
         window.alert(`Expense ${this.isEditMode ? 'Added' : 'Updated'} Successfully!!`);
-        debugger
         this.closeCanvas();
         this.isRequestInProgress = false;
         this.updateExpense.emit(res);

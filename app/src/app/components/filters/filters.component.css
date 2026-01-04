@@ -9,3 +9,12 @@
 .category-filter {
     width: 280px;
 }
+
+.bi-x-circle-fill {
+    right: 10px;
+    top: 5px;
+}
+
+.bi-x-circle-fill:hover {
+    color: blue !important;
+}

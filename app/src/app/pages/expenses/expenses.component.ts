@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { of, switchMap } from 'rxjs';
+import { filter, of, switchMap } from 'rxjs';
 
 import { Expense } from '../../core/models/expense.model';
 import { Category } from '../../core/models/category.model';
@@ -10,6 +10,7 @@ import { CategoriesService } from '../../core/services/categories.service';
 import { FiltersComponent } from '../../components/filters/filters.component';
 import { ExpenseTableComponent } from '../../components/expense-table/expense-table.component';
 import { SaveExpenseComponent } from '../../components/save-expense/save-expense.component';
+import { Filters } from '../../core/models/filters.model';
 
 @Component({
   selector: 'app-expenses',
@@ -20,6 +21,7 @@ import { SaveExpenseComponent } from '../../components/save-expense/save-expense
 export class ExpensesComponent {
   @ViewChild('saveExpenseCanvas') saveExpenseCanvas!: SaveExpenseComponent;
   expensesList: Array<Expense> = [];
+  filteredExpensesList: Array<Expense> = [];
   categoriesList: Array<Category> = [];
 
   constructor(private expenseService: ExpenseService,
@@ -44,6 +46,7 @@ export class ExpensesComponent {
     this.expenseService.getAllExpenses().subscribe({
       next: (res) => {
         this.expensesList = res;
+        this.filteredExpensesList = this.expensesList;
       }
     }); 
   }
@@ -61,6 +64,71 @@ export class ExpensesComponent {
       this.saveExpenseCanvas.openAddCanvas();
     }
   }
+
+  //Filters:
+  parseDate(dateStr: string): Date {
+    const [day, month, year] = dateStr.split('-').map(Number);
+    return new Date(year, month-1, day);
+  }
+
+  applyDateRangeFilter(expenses: Expense[], range: Date) {
+    const startDate = range;
+    return expenses.filter(exp => {
+      const expenseDate = this.parseDate(exp.date);
+      return expenseDate >= startDate;
+    });
+  }
+
+  applyCategoryFilter(expenses: Expense[], selectedCategory: number) {
+    return expenses.filter(exp => parseInt(exp.category) == selectedCategory);
+  }
+
+  applyAmountFilter(expenses: Expense[], filters: Filters) {
+    const minAmount = filters.minAmount;
+    const maxAmount = filters.maxAmount;
+    return expenses.filter(exp => {
+      if(minAmount && exp.amount < minAmount) return false;
+      if(maxAmount && exp.amount > maxAmount) return false;
+      return true;
+    });
+  }
+
+  applySorting(expenses: Expense[], sortByValue: string, sortOrder: string = 'desc') {
+    const order = sortOrder == 'desc' ? -1 : 1;
+    return [...expenses].sort((a,b) => {
+      switch(sortByValue) {
+        case 'amount':
+          return (a.amount - b.amount) *  order;
+        case 'date':
+          return (this.parseDate(a.date).getTime() - this.parseDate(b.date).getTime()) * order;
+        case 'title':
+          return a.title.localeCompare(b.title) * order;
+        default:
+          return 0;
+      }
+    }); 
+  }
+
+  applyFilters(filters: Filters) {
+    let result = [...this.expensesList];
+    
+    if(filters.dateRange) {
+      result = this.applyDateRangeFilter(result, filters.dateRange);
+    }
+    if(filters.category) {
+      result = this.applyCategoryFilter(result, filters.category);
+    }
+    if(filters.minAmount || filters.maxAmount) {
+      result = this.applyAmountFilter(result, filters);
+    }
+    if(filters.sortBy) {
+      result = this.applySorting(result, filters.sortBy, 'asc');
+    }
+
+    this.filteredExpensesList = result;
+  }
+
+  /////
 
   bookmarkSelectedExpense(expense: Expense) { 
     this.confirmService.open(
