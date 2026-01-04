@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body position-relative">
+            <span class="bi bi-x-circle-fill position-absolute cursor-pointer text-secondary" [tooltip]="'Clear filters'" (click)="clearFilters()"></span>
+            <form [formGroup]="filtersForm">
+                <div class="d-flex align-items-end justify-content-evenly gap-4">
+                    <div>
+                        <h6>Date Range</h6>
+                        <select class="form-select cursor-pointer date-range-filter" formControlName="dateRange" aria-label="Date Range Selection" (change)="onDateRangeChange($event)">
+                            <option selected value="default">Select date range</option>
+                            <option value="6M">Last 6 Months</option>
+                            <option value="3M">Last 3 Months</option>
+                            <option value="1M">Last Month</option>
+                            <option value="10D">Last 10 Days</option>
+                            <option value="1W">Last Week</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>Category</h6>
+                        <select class="form-select cursor-pointer category-filter" formControlName="category" aria-label="Category Selection" (change)="onCategoryChange($event)">
+                            <option selected value="0">All Categories</option>
+                            @for(category of categories; track category.id) {
+                                <option value="{{category.id}}">{{category.name}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <h6>Amount</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="text" #min class="form-control mb-0" formControlName="minAmount" placeholder="Min" (input)="onMinAmountChange(min.value, max.value)">
+                            <input type="text" #max class="form-control mb-0" formControlName="maxAmount" placeholder="Max" (input)="onMinAmountChange(min.value, max.value)">
+                        </div>
+                    </div>
+                    <div>
+                        <select class="form-select cursor-pointer" formControlName="sortBy" (change)="onSortOptionChange($event)">
+                            <option selected value="default">Sort by</option>
+                            <option value="title">Title</option>
+                            <option value="date">Date</option>
+                            <option value="category">Category</option>
+                            <option value="amount">Amount</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

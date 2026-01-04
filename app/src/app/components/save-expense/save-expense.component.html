@@ -1,0 +1,48 @@
+<div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header border-bottom shadow-sm">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">{{isEditMode ? 'Edit Expense' : 'Add Expense'}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="closeCanvas()"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form [formGroup]="expenseForm" class="d-flex flex-column h-100">
+        <div class="mb-3">
+            <label for="expenseTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="expenseTitle" formControlName="title" placeholder="Enter title here">
+        </div>
+
+        <div class="mb-3">
+          <label for="selectCategory" class="form-label">Category</label>
+          <select class="form-select cursor-pointer" 
+                  id="selectCategory" 
+                  #mySelect 
+                  formControlName="category"
+                >
+              <option value="0" selected>Select Category</option>
+              @for(category of categoryList; track category.id) {
+                <option value="{{category.id}}">{{category.name}}</option>
+              }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="expenseAmount" class="form-label">Amount</label>
+          <div class="input-group" id="expenseAmount">
+            <span class="input-group-text">₹</span>
+            <input type="number" class="form-control" formControlName="amount" aria-label="Amount (to the nearest rupee)">
+          </div>  
+        </div>
+
+        <div class="mb-3">
+            <label for="expenseNotes" class="form-label">Notes</label>
+            <textarea class="form-control" id="expenseNotes" formControlName="notes" rows="3"></textarea>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input cursor-pointer" type="checkbox" value="" id="bookmarkExpense" formControlName="isBookmarked">
+          <label class="form-check-label cursor-pointer" for="bookmarkExpense">Bookmark this expense</label>
+        </div>
+
+        <button class="btn btn-primary mt-auto" (click)="saveExpense()" [disabled]="isRequestInProgress">{{isRequestInProgress ? 'Saving...' : (isEditMode ? 'Save Changes' : 'Save Expense')}}</button>
+    </form>
+  </div>
+</div>

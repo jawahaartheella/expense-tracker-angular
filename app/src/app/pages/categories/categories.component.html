@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between my-4">
+        <h2>Categories</h2>
+        <button class="btn btn-primary" type="button" (click)="openCategoryCanvas(false)">Add Category</button>
+    </div>
+    <div class="border border-secondary-subtle rounded">
+        <h5 class="border-bottom rounded-top bg-body-secondary p-3 mb-0">Category</h5>
+        @for(category of categories; track category.id) {
+            <div class="d-flex align-items-center justify-content-between p-3">
+                <div class="d-flex align-items-center gap-3 w-75">
+                    <span [ngStyle]="{'background-color': category.colorCode}" class="category-color-container rounded-1"></span>
+                    <p class="mb-0 w-100 text-truncate"><strong>{{category.name}}</strong> - <span title="{{category.description}}">{{category.description}}</span></p>
+                </div>
+                <div>
+                    <span class="bi bi-pencil me-3 text-body-secondary cursor-pointer" (click)="openCategoryCanvas(true, category)"></span>
+                    <span class="bi bi-trash text-danger cursor-pointer" (click)="deleteCategory(category)"></span>
+                </div>
+            </div>
+        }
+    </div>
+</div>  
+
+<app-save-category #addOrEditCategory (updatedCategory)="updateCategoryList($event)"></app-save-category>

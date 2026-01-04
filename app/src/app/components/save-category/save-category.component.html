@@ -1,0 +1,31 @@
+<div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header border-bottom shadow-sm">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">{{isEditMode ? 'Edit Category' : 'Add Category'}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form [formGroup]="categoryForm" class="d-flex flex-column h-100">
+        <div class="mb-3">
+          <label for="categoryName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="categoryName" formControlName="name" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="categoryColor" class="form-label">Pick Label Color</label>
+          <input type="color" 
+                class="form-control form-control-color" 
+                formControlName="colorCode" 
+                id="categoryColor" 
+                title="Choose your color">
+        </div>
+        <div class="mb-3">
+          <label for="categoryDescripton" class="form-label">Description (optional)</label>
+          <textarea class="form-control" id="categoryDescripton" formControlName="description" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary mt-auto" 
+              (click)="isEditMode ? editCategory() : addCategory()" 
+              [disabled]="isRequestInProgress">
+                {{isEditMode ? 'Save Changes' : 'Save Category'}}
+        </button>
+    </form>
+  </div>
+</div>
