@@ -26,3 +26,7 @@
 .bi-pencil:hover {
     color: blue
 }
+
+.pointer-events-none {
+    pointer-events: none;
+}

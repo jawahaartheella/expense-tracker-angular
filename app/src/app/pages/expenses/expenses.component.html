@@ -3,10 +3,11 @@
     <button class="btn btn-primary" type="button" (click)="openExpenseCanvas(false)">Add Expense</button>
 </div>
 <div>
-    <app-filters></app-filters>
-    <app-expense-table [expenseData]="expensesList" 
+    <app-filters [categories]="categoriesList" (filtersChange)="applyFilters($event)"></app-filters>
+    <app-expense-table [expenseData]="filteredExpensesList" 
                     [showNotesOptions]="true" 
                     [isTableFixedLayout]="false" 
+                    [enablePagination]="true"
                     [categories]="categoriesList"
                     (emitExpense)="updateExpenseList($event)"
                     (openEditCanvas)="openExpenseCanvas(true, $event)"
