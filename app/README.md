@@ -1,59 +1,172 @@
-# App
+# 💰 Expense Tracker – Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+<img src="./src/assets/et-banner-image.png">
 
-## Development server
+A modern, responsive Expense Tracker built with Angular that helps users manage expenses, categorize spending, analyze monthly totals, and visualize top spending categories.
 
-To start a local development server, run:
+This project focuses on clean frontend architecture, reusable component design, API abstraction patterns, and real-world dashboard data modeling.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Live Demo
 
-## Code scaffolding
+🔗 **Live Website:**  
+https://your-username.github.io/expense-tracker-angular/
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 📌 Project Overview
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This application allows users to:
 
-```bash
-ng generate --help
-```
+- Add, edit, and delete expenses
+- Bookmark important expenses
+- Create and manage custom categories
+- Apply advanced filters (date range, category, amount range)
+- Sort expenses dynamically
+- View monthly total spending (1st → today)
+- Visualize top 5 most-used categories (dynamic bar graph)
+- Use client-side pagination
+- Experience smooth UI interactions using Bootstrap components
 
-## Building
+The dashboard dynamically calculates:
 
-To build the project run:
+- Category-wise expense totals
+- Proportional bar graph heights
+- Monthly aggregated totals
+- Zero-spend category handling
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🛠 Tech Stack
 
-## Running unit tests
+### Frontend
+- Angular 19 (Standalone Components)
+- TypeScript
+- RxJS
+- Bootstrap 5
+- Bootstrap Icons
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### API & Data
+- HttpClient
+- Custom API Wrapper Service
+- HTTP Interceptor (API Prefix Handling)
+- mockapi.io (Mock REST API simulation)
 
-```bash
-ng test
-```
+### Architecture Patterns
+- Reactive Forms
+- Custom Tooltip Directive
+- EventEmitter-based Component Communication
+- Debounced Filtering (RxJS debounceTime)
+- Client-side Pagination
+- Data Aggregation using Map
+- Feature-based Git Workflow
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🌐 Mock API
 
-```bash
-ng e2e
-```
+This project uses **mockapi.io** to simulate real REST API behavior.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+It allows:
+- Creating realistic CRUD endpoints
+- Testing async network calls
+- Working with data similar to production environments
 
-## Additional Resources
+🔗 https://mockapi.io
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🎨 Design Note
+
+The promotional banner and visual presentation assets in this project were created using AI-assisted design tools as part of a modern frontend workflow.
+
+AI was used as:
+- A visual prototyping assistant
+- A concept generator
+- A design accelerator
+
+All UI implementation, architecture, logic, and component structure were manually built in Angular.
+
+This reflects practical real-world usage of AI as a productivity tool while maintaining full engineering ownership.
+
+---
+
+## 📂 Project Structure (High Level)
+<pre>
+    src/
+    ├── core/
+    │    ├── interceptors/
+    │    ├── services/
+    │
+    ├── components/
+    │    ├── filters/
+    │    ├── expense-table/
+    │    ├── edit-category/
+    │
+    ├── pages/
+    │    ├── dashboard/
+    │    ├── expenses/
+    │    ├── categories/
+    │
+    ├── models/
+</pre>
+
+---
+
+## ⭐ Why This Project Stands Out
+
+**This is not a basic CRUD demo.**
+
+It demonstrates:
+- Real dashboard data modeling
+- Scalable architecture decisions
+- API abstraction
+- Performance-aware filtering
+- Clean Git practices
+- Modern frontend engineering workflow
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone Repository
+<pre> git clone https://github.com/your-username/expense-tracker-angular.git
+ cd expense-tracker-angular </pre>
+
+### 2️⃣ Install Dependencies
+<pre>npm install</pre>
+
+### 3️⃣ Run Development Server
+<pre>ng serve</pre>
+
+### Open:
+<pre>http://localhost:4200</pre>
+
+--- 
+
+## 🏗 Production Build
+<pre> ng build --configuration production </pre>
+
+---
+
+## 🚀 Deployment
+
+Yet to be deployed using **Vercel**.
+
+---
+
+## 📈 Future Enhancements
+
+- Backend integration (Node / .NET)
+- Authentication
+- Dark mode
+- Chart.js integration
+- Export to CSV / PDF
+- Server-side pagination
+
+---
+
+## 👨‍💻 Author
+
+Jawahaar Theella
+<br>
+<a href="https://github.com/jawahaartheella">GitHub</a>
