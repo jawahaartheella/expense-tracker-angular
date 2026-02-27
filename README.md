@@ -11,7 +11,7 @@ This project focuses on clean frontend architecture, reusable component design, 
 ## 🚀 Live Demo
 
 🔗 **Live Website:**  
-https://your-username.github.io/expense-tracker-angular/
+yet to be deployed
 
 ---
 
