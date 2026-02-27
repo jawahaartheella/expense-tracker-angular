@@ -1,0 +1,32 @@
+.table-container {
+    border-color: rgba(0, 0, 0, 0.175) !important;
+    margin: 30px 120px;
+}
+
+.title-cell {
+    padding-left: 30px;
+}
+
+.notes-cell {
+    padding-right: 30px
+}
+
+.table-fixed-layout {
+    table-layout: fixed;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bi-trash:hover {
+    color: red;
+}
+
+.bi-pencil:hover {
+    color: blue
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}

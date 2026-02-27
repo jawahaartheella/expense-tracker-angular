@@ -1,0 +1,70 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6>Total Spent</h6>
+                            <h3 class="lh-lg my-3">{{getCurrentMonthTotal() | currency:'INR':'symbol':'1.0-0'}}</h3>
+                            <h6 class="pb-1">({{currentMonth}} {{currentYear}})</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center">Category Breakdown</h5>
+                            <div class="d-flex align-items-center justify-content-between gap-4 px-4 mt-3">
+                                <div class="d-flex align-items-end gap-2 justify-content-center" style="height: 100px;">
+                                    @for(category of top5Categories; track category.categoryId) {
+                                        <div class="rounded" 
+                                            [tooltip]="category.categoryName + ' - ₹' + category.total"
+                                            [style.height.px]="category.height" 
+                                            [style.backgroundColor]="category.colorCode" 
+                                            style="width: 25px">
+                                        </div>
+                                    }
+                                </div>
+                                <div>
+                                    @for(category of top5Categories; track category.categoryId) {
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="rounded" [style.backgroundColor]="category.colorCode" style="height: 10px; width: 10px;"></div>
+                                            <span style="font-size: 13px;">{{category.categoryName}}</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Recent Expenses</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3">Recent 5 Expenses</h5>
+                    <ul class="list-unstyled mb-0 recent-expenses-list">
+                        @for(expense of recentExpenses; track expense.id) {
+                            <li class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-2">
+                                <span>{{expense.title}}</span>
+                                <span>₹ {{expense.amount}}.00</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-expense-table [expenseData]="recentExpenses" [categories]="categoriesList" [isTableFixedLayout]="true"></app-expense-table>

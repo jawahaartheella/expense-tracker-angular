@@ -1,0 +1,51 @@
+<div class="table-container border rounded-3 overflow-hidden">
+    <table class="table mb-0" [ngClass]="{'table-fixed-layout': isTableFixedLayout}">
+        <thead>
+            <tr class="table-light">
+                <th scope="col" class="title-cell">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Amount</th>
+                <th scope="col" class="notes-cell" [ngClass]="{'col-5': !showNotesOptions}">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(expense of paginatedExpenses; track expense.id) {
+                <tr>
+                    <td class="title-cell">{{expense.title}}</td>
+                    <td>{{expense.date}}</td>
+                    <td>{{getCatgeoryName(expense.category)}}</td>
+                    <td>₹ {{expense.amount}}</td>
+                    <td class="notes-cell d-flex align-items-center justify-content-between">
+                        <span class="">{{expense.notes?.length ? expense.notes : 'NA'}}</span>
+                        @if(showNotesOptions) {
+                            <div>
+                                <i class="bi bi-pencil me-3 cursor-pointer" (click)="openEditExpeseCanvas(expense)"></i>
+                                @if(expense.isBookmarked) {
+                                    <span class="bi bi-bookmark-fill me-3 cursor-pointer" (click)="emitExpenseToBookmark(expense)"></span>
+                                } @else {
+                                    <span class="bi bi-bookmark me-3 cursor-pointer" (click)="emitExpenseToBookmark(expense)"></span>
+                                }
+                                <i class="bi bi-trash cursor-pointer" (click)="emitExpenseToDelete(expense)"></i>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if(!expenseData.length) {
+        <div class="text-center pt-3">
+            <i class="bi bi-database-x fs-1 text-secondary"></i>
+            <p class="fs-5 text-secondary">No records found</p>
+        </div>
+    }
+
+    @if(enablePagination) {
+        <div class="d-flex gap-2 justify-content-end px-4 py-3">
+            <span class="bi bi-caret-left-fill cursor-pointer" (click)="loadPreviousExpenses()" [ngClass]="{'pointer-events-none text-secondary' : (startCount <= 0)}"></span>
+            <span>{{startCount}} - {{endCount}} of {{expenseData.length}}</span>
+            <span class="bi bi-caret-right-fill cursor-pointer" (click)="loadNextExpenses()"  [ngClass]="{'pointer-events-none text-secondary' : (endCount >= expenseData.length)}"></span>
+        </div>
+    }
+</div>
