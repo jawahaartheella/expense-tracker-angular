@@ -11,7 +11,7 @@ This project focuses on clean frontend architecture, reusable component design, 
 ## 🚀 Live Demo
 
 🔗 **Live Website:** 
-<a href="https://vercel.com/jawahaartheellas-projects/expense-tracker-angular">demo link</a>
+<a href="https://expense-tracker-angular-nu.vercel.app/">Click Here</a>
 ---
 
 ## 📌 Project Overview
