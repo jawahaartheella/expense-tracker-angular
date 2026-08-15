@@ -149,7 +149,7 @@ It demonstrates:
 
 ## 🚀 Deployment
 
-Yet to be deployed using **Vercel**.
+Deployed using **Vercel**.
 
 ---
 
